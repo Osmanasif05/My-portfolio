@@ -300,7 +300,7 @@ const Portfolio = () => {
             
             {/* Resume Button */}
             <a 
-              href="/resume.pdf"
+              href="/MyResume.pdf"
               target="_blank"
               rel="noopener noreferrer"
               className="px-8 py-3 rounded border border-cyan-500/50 text-cyan-400 hover:bg-cyan-950/30 font-medium transition-all flex items-center gap-2"
