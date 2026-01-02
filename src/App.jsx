@@ -22,6 +22,7 @@ const Portfolio = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [activeSection, setActiveSection] = useState('home');
   const [scrolled, setScrolled] = useState(false);
+  const [copied, setCopied] = useState(false); // State for copy feedback
 
   // Handle scroll effects
   useEffect(() => {
@@ -31,6 +32,13 @@ const Portfolio = () => {
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
+
+  // Handle Copy Email
+  const handleCopyEmail = () => {
+    navigator.clipboard.writeText("osman.asif@torontomu.ca");
+    setCopied(true);
+    setTimeout(() => setCopied(false), 2000); // Reset after 2 seconds
+  };
 
   // Navigation Links
   const navLinks = [
@@ -298,9 +306,9 @@ const Portfolio = () => {
               View Projects <ChevronRight size={18} />
             </a>
             
-            {/* Resume Button */}
+            {/* Resume Button - Linking to Public Folder */}
             <a 
-              href="/MyResume.pdf"
+              href="/resume.pdf"
               target="_blank"
               rel="noopener noreferrer"
               className="px-8 py-3 rounded border border-cyan-500/50 text-cyan-400 hover:bg-cyan-950/30 font-medium transition-all flex items-center gap-2"
@@ -536,37 +544,6 @@ const Portfolio = () => {
         </div>
       </section>
 
-      {/* Skills Section */}
-      <section id="skills" className="py-24 px-6">
-        <div className="max-w-5xl mx-auto">
-          <div className="flex items-center gap-4 mb-16">
-            <h2 className="text-3xl md:text-4xl font-bold text-white font-mono">04. Technical Arsenal</h2>
-            <div className="h-px bg-slate-700 flex-1"></div>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {skillCategories.map((cat, idx) => (
-              <div key={idx} className="bg-slate-900/50 p-6 rounded-lg border border-slate-800 hover:bg-slate-800/50 transition-colors">
-                <div className="flex items-center gap-3 mb-4">
-                  {cat.icon}
-                  <h3 className="text-lg font-bold text-white">{cat.title}</h3>
-                </div>
-                <div className="flex flex-wrap gap-2">
-                  {cat.skills.map((skill, sIdx) => (
-                    <span 
-                      key={sIdx} 
-                      className="px-3 py-1 bg-slate-950 rounded text-sm text-slate-300 border border-slate-800 hover:border-cyan-500/30 transition-colors cursor-default"
-                    >
-                      {skill}
-                    </span>
-                  ))}
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
       {/* Footer */}
       <footer className="py-12 bg-slate-950 border-t border-slate-900 text-center">
         <div className="max-w-4xl mx-auto px-6">
@@ -592,12 +569,20 @@ const Portfolio = () => {
             >
               <Github size={24} />
             </a>
-            <a 
-              href="mailto:osman.asif@torontomu.ca" 
-              className="p-3 bg-slate-900 rounded-full text-slate-400 hover:text-cyan-400 hover:bg-slate-800 transition-all transform hover:scale-110"
+            
+            {/* Replaced mailto with copy button */}
+            <button 
+              onClick={handleCopyEmail}
+              className="p-3 bg-slate-900 rounded-full text-slate-400 hover:text-cyan-400 hover:bg-slate-800 transition-all transform hover:scale-110 relative"
+              title="Copy Email"
             >
               <Mail size={24} />
-            </a>
+              {copied && (
+                <span className="absolute -top-8 left-1/2 transform -translate-x-1/2 bg-cyan-500 text-slate-900 text-xs font-bold px-2 py-1 rounded shadow-lg animate-fade-in-up">
+                  Copied!
+                </span>
+              )}
+            </button>
           </div>
           
           <div className="text-slate-600 text-sm font-mono">
