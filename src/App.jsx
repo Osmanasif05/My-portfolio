@@ -581,7 +581,7 @@ const Portfolio = () => {
               <Github size={24} />
             </a>
             <a 
-              href="mailto:hello@example.com" // Placeholder email
+              href="mailto:osman.asif@torontomu.ca" // Placeholder email
               className="p-3 bg-slate-900 rounded-full text-slate-400 hover:text-cyan-400 hover:bg-slate-800 transition-all transform hover:scale-110"
             >
               <Mail size={24} />
