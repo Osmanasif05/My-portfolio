@@ -14,7 +14,8 @@ import {
   Terminal,
   Database,
   PenTool,
-  Activity
+  Activity,
+  FileText
 } from 'lucide-react';
 
 const Portfolio = () => {
@@ -85,7 +86,7 @@ const Portfolio = () => {
       location: "Toronto, ON",
       date: "Aug 2025 – Aug 2025",
       description: [
-        "Calibrated and synchronized a dual-camera vision system in ROS 2 using AprilTags, aligning camera coordinate frames with the robotic arm and configuring a unified perception pipeline.",
+        "Calibrated and synchronized a dual-camera vision system in ROS 2 using AprilTags, aligning camera coordinate frames with the robotic arm and configuring a unified perception pipeline to ensure consistent operation during arm motion.",
         "Engineered a new camera mounting clamp in SolidWorks to resolve slippage and vibration issues, ensuring a high-friction fit required for precise base camera tracking during rapid arm rotation."
       ],
       icon: <Activity className="text-cyan-400" />
@@ -296,6 +297,17 @@ const Portfolio = () => {
             >
               View Projects <ChevronRight size={18} />
             </a>
+            
+            {/* Resume Button */}
+            <a 
+              href="/resume.pdf"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="px-8 py-3 rounded border border-cyan-500/50 text-cyan-400 hover:bg-cyan-950/30 font-medium transition-all flex items-center gap-2"
+            >
+              <FileText size={18} /> Resume
+            </a>
+
             <a 
               href="https://www.linkedin.com/in/osman-asif-a80471346/details/projects/" 
               target="_blank" 
@@ -581,7 +593,7 @@ const Portfolio = () => {
               <Github size={24} />
             </a>
             <a 
-              href="mailto:osman.asif@torontomu.ca" // Placeholder email
+              href="mailto:osman.asif@torontomu.ca" 
               className="p-3 bg-slate-900 rounded-full text-slate-400 hover:text-cyan-400 hover:bg-slate-800 transition-all transform hover:scale-110"
             >
               <Mail size={24} />
