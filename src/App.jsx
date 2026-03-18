@@ -242,7 +242,7 @@ const Portfolio = () => {
     {
       title: "Frameworks & Libs",
       icon: <Database className="w-5 h-5 mb-1 text-purple-400" />,
-      skills: ["ROS 2", "OpenCV", "MediaPipe", "Arduino/ESP32"]
+      skills: ["ROS 2", "OpenCV", "MediaPipe", "Arduino/ESP32", "STM32"]
     },
     {
       title: "Engineering Tools",
@@ -252,7 +252,7 @@ const Portfolio = () => {
     {
       title: "Electrical & Embedded",
       icon: <Zap className="w-5 h-5 mb-1 text-yellow-400" />,
-      skills: ["PWM & H-Bridge", "Sensor Interfacing", "Power Electronics", "Actuators", "NI DAQ"]
+      skills: ["PWM & H-Bridge", "Sensor Interfacing", "Power Electronics", "Actuators", "NI DAQ", "FreeRTOS"]
     },
     {
       title: "Manufacturing",
