@@ -14,15 +14,13 @@ import {
   Terminal,
   Database,
   PenTool,
-  Activity,
-  FileText
+  Activity
 } from 'lucide-react';
 
 const Portfolio = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [activeSection, setActiveSection] = useState('home');
   const [scrolled, setScrolled] = useState(false);
-  const [copied, setCopied] = useState(false); // State for copy feedback
 
   // Handle scroll effects
   useEffect(() => {
@@ -32,13 +30,6 @@ const Portfolio = () => {
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
-
-  // Handle Copy Email
-  const handleCopyEmail = () => {
-    navigator.clipboard.writeText("osman.asif@torontomu.ca");
-    setCopied(true);
-    setTimeout(() => setCopied(false), 2000); // Reset after 2 seconds
-  };
 
   // Navigation Links
   const navLinks = [
@@ -53,6 +44,18 @@ const Portfolio = () => {
   const experiences = [
     {
       id: 1,
+      role: "Software Developer Intern",
+      company: "Telebotics",
+      location: "Toronto, ON",
+      date: "Feb 2026 – Present",
+      description: [
+        "Engineering sensor-fusion and software integration pipelines for low-speed autonomous vehicles using ROS 2, conducting high-fidelity testing in Gazebo to validate teleoperation features and system reliability.",
+        "Refining real-time system performance in C++/Python, ensuring seamless transitions between remote assistance and autonomous modes."
+      ],
+      icon: <Terminal className="text-cyan-400" />
+    },
+    {
+      id: 2,
       role: "Software Developer",
       company: "TMU Velocity",
       location: "Toronto, ON",
@@ -64,7 +67,7 @@ const Portfolio = () => {
       icon: <Code className="text-cyan-400" />
     },
     {
-      id: 2,
+      id: 3,
       role: "Mechanical Designer",
       company: "TMU Chem-E-Car",
       location: "Toronto, ON",
@@ -76,7 +79,7 @@ const Portfolio = () => {
       icon: <Settings className="text-cyan-400" />
     },
     {
-      id: 3,
+      id: 4,
       role: "Mechatronics Design Intern",
       company: "MiON Science",
       location: "Remote",
@@ -88,13 +91,13 @@ const Portfolio = () => {
       icon: <Cpu className="text-cyan-400" />
     },
     {
-      id: 4,
+      id: 5,
       role: "Undergraduate Assistant",
       company: "ELIXIR Lab",
       location: "Toronto, ON",
       date: "Aug 2025 – Aug 2025",
       description: [
-        "Calibrated and synchronized a dual-camera vision system in ROS 2 using AprilTags, aligning camera coordinate frames with the robotic arm and configuring a unified perception pipeline to ensure consistent operation during arm motion.",
+        "Calibrated and synchronized a dual-camera vision system in ROS 2 using AprilTags, aligning camera coordinate frames with the robotic arm and configuring a unified perception pipeline.",
         "Engineered a new camera mounting clamp in SolidWorks to resolve slippage and vibration issues, ensuring a high-friction fit required for precise base camera tracking during rapid arm rotation."
       ],
       icon: <Activity className="text-cyan-400" />
@@ -105,13 +108,14 @@ const Portfolio = () => {
   const ongoingProjects = [
     {
       id: "ongoing-1",
-      title: "Embedded Vibration-Based Condition Monitoring System",
-      tech: ["Embedded Systems", "Signal Processing", "ML Models (CNN/LSTM)", "MEMS"],
+      title: "Embedded Vibration-Based Condition Monitoring",
+      tech: ["Embedded Systems", "Signal Processing", "ML (CNN/LSTM)", "MEMS"],
       status: "Active Development",
       description: [
-        "Designing an embedded data acquisition system using a MEMS accelerometer and MCU to stream real-time vibration data to a PC.",
-        "Developing a signal processing pipeline for feature extraction and frequency-domain analysis of vibration signals.",
-        "Evaluating and comparing baseline ML models and neural architectures (MLP, 1D CNN, LSTM) for vibration-based fault classification."
+        "Designing a real-time data acquisition pipeline using a MEMS accelerometer (I2C/SPI) and MCU to stream vibration data to a PC.",
+        "Applying low-pass/band-pass filtering and FFT for frequency-domain analysis and extracting features like RMS and peak amplitude.",
+        "Evaluating baseline ML architectures (MLP, 1D CNN, LSTM) to classify mechanical faults based on temporal patterns.",
+        "Transitioning from PC-based inference to edge deployment on the MCU using TinyML optimization techniques."
       ]
     },
     {
@@ -120,8 +124,33 @@ const Portfolio = () => {
       tech: ["Robotics", "Kinematics", "CAD", "Simulation"],
       status: "Research Phase",
       description: [
-        "Currently exploring inverse and forward kinematics for CAD design preparation.",
-        "Exploring robotics simulations to validate mechanical concepts and control strategies for the prototype."
+        "Developing forward and inverse kinematic models for multi-DOF leg mechanisms to calculate exact joint angles for foot positioning.",
+        "Investigating static and dynamic stability margins for tripod and wave gait patterns using robotic simulation tools.",
+        "Designing the physical structure in CAD, optimizing joint placement, range of motion, and weight distribution for uneven terrain."
+      ]
+    },
+    {
+      id: "ongoing-3",
+      title: "Analog Ruler with Rotary Display",
+      tech: ["LabVIEW", "NI DAQ", "Control Systems", "SolidWorks"],
+      status: "Active Development",
+      description: [
+        "Designing a closed-loop control system converting linear measurement into angular positioning using a DC gearmotor and NI USB-6001 DAQ.",
+        "Modeling system dynamics and tuning a PID controller in LabVIEW to achieve fast response, minimal overshoot, and low steady-state error.",
+        "Performing experimental system identification (step response analysis) to validate performance metrics like rise time and position error.",
+        "Designed a custom SolidWorks enclosure to protect electronics and ensure precision alignment of rotating components."
+      ]
+    },
+    {
+      id: "ongoing-4",
+      title: "Robotic Gripper",
+      tech: ["SolidWorks", "MATLAB", "Kinematics", "Prototyping"],
+      status: "Active Development",
+      description: [
+        "Designing a four-bar linkage gripper using kinematic synthesis and vector-loop equations to control trajectory and velocity.",
+        "Analyzing force transmission to optimize geometry, maximizing mechanical advantage and grip force at contact points.",
+        "Building MATLAB simulation models to validate motion profiles and predict performance sensitivity prior to fabrication.",
+        "Modeling the full assembly in SolidWorks, applying GD&T and DFM/DFA principles to evaluate stress, interference, and joint constraints."
       ]
     }
   ];
@@ -134,19 +163,21 @@ const Portfolio = () => {
       tech: ["SolidWorks", "DFM/DFA", "3D Printing", "ESP32", "C/C++"],
       date: "Sep 2025 – Dec 2025",
       details: [
-        "Designed and manufactured a 3-DOF robotic arm mounted on a mecanum-wheel mobile base, enabling autonomous grasping, onboard storage, and controlled release of blocks through a custom mechanical storage mechanism.",
-        "Led end-to-end mechanical CAD and DFM-driven fabrication in SolidWorks, producing manufacturing-ready drawings and optimizing geometry for single-print assemblies, minimal fasteners, modular part replacement, and rapid design iteration."
+        "Designed a fully integrated holonomic mecanum-wheel base and 3-DOF robotic arm for autonomous object handling and relocation.",
+        "Integrated a custom onboard mechanical storage mechanism enabling an automated grasp-store-release pick-and-place workflow.",
+        "Created full CAD assembly in SolidWorks, applying DFM/DFA to reduce part count, minimize fasteners, and optimize for single-print geometries."
       ],
       category: "Robotics"
     },
     {
       id: 2,
       title: "Automated Bike Lock System",
-      tech: ["Python", "OpenCV", "C/C++", "Arduino", "SolidWorks", "3D Printing"],
+      tech: ["Python", "OpenCV", "C/C++", "Arduino", "SolidWorks"],
       date: "Sep 2024 – Dec 2024",
       details: [
-        "In a four-person team, developed a dual-authentication bike lock system integrating keypad override and a facial recognition pipeline using Python, OpenCV, and MediaPipe, achieving 90%+ recognition accuracy in real-world testing.",
-        "Designed and 3D printed custom housing in SolidWorks, integrating mechanical constraints for electronics, and developed Arduino firmware (C/C++) to control a servo actuator, achieving sub-1-second unlock response following user authentication."
+        "Developed a dual-authentication smart lock combining a keypad PIN fallback with a facial recognition pipeline using Python, OpenCV, and MediaPipe (>90% accuracy).",
+        "Programmed an Arduino in C/C++ to control a servo actuator, ensuring deterministic, sub-1-second unlock response times.",
+        "Designed a custom, robust enclosure in SolidWorks integrating constraints for camera placement, electronics housing, and structural durability."
       ],
       category: "Embedded/CV"
     },
@@ -156,8 +187,9 @@ const Portfolio = () => {
       tech: ["C/C++", "AVR Assembly", "PWM", "IR Sensors"],
       date: "Sep 2025 – Present",
       details: [
-        "Developed an autonomous robot car capable of line-following and maze navigation using IR reflectance sensors, PWM motor control, and decision-making algorithms. Programmed the system in C, C++, and AVR Assembly, implementing low-level logic through direct register manipulation for real-time timing, I/O operations, and interrupts.",
-        "Designed embedded control routines for speed regulation, smooth turning, branch detection, and path-resolution logic, supported by systematic testing and calibration across multiple track layouts."
+        "Developed an autonomous robot for line-following and maze navigation utilizing IR reflectance sensors and decision-making logic.",
+        "Programmed low-level control in C, C++, and AVR Assembly, employing direct register manipulation for timers, interrupts, and GPIO.",
+        "Implemented embedded control routines for PWM speed regulation, smooth turning algorithms, branch detection, and path resolution."
       ],
       category: "Embedded"
     },
@@ -167,8 +199,9 @@ const Portfolio = () => {
       tech: ["SolidWorks", "Tolerance Analysis", "DFM/DFA"],
       date: "Jan 2025 – Apr 2025",
       details: [
-        "Designed a manually operated mechanical sorting system to separate balls, incorporating a parallel four-bar linkage for controlled motion and a geared rotating base for precise positioning, supported by manufacturing drawings for repeatable assembly.",
-        "Designed a three-fingered, elastic-assisted claw and applied DFM/DFA principles in SolidWorks to reduce part count, simplify assembly, and maintain a critical ±0.5 mm tolerance across interfaces."
+        "Designed a purely mechanical, manually operated sorting mechanism emphasizing reliability without electronic actuation.",
+        "Engineered a motion system using a parallel four-bar linkage, a geared rotating base for positioning, and a three-fingered elastic-assisted claw.",
+        "Conducted tolerance analysis (±0.5 mm) and applied DFM/DFA in SolidWorks to reduce part count, simplify assembly, and guarantee repeatability."
       ],
       category: "Mechanical"
     },
@@ -178,9 +211,10 @@ const Portfolio = () => {
       tech: ["SolidWorks", "Mechanical Design", "3D Printing", "Parametric Design"],
       date: "Jul 2025 – Aug 2025",
       details: [
-        "Refined a 2-axis gimbal camera mount for an autonomous rover over multiple design cycles in SolidWorks, achieving a 20% reduction in part count to simplify assembly and a 15% decrease in mass to reduce payload.",
-        "Engineered a versatile clamping mechanism with a sliding shaft system to enhance modularity, allowing the mount to be securely fastened across various frame tubes (20mm-30mm diameter).",
-        "Utilized advanced features like interference detection and parametric design to ensure the model was manufacturable and precise for controlled pitch and yaw motion."
+        "Engineered a lightweight, modular 2-axis gimbal for camera stabilization on an autonomous rover, controlling pitch and yaw.",
+        "Iteratively refined the CAD design in SolidWorks to achieve a 20% reduction in part count and a 15% decrease in overall mass.",
+        "Designed a versatile sliding-shaft clamping mechanism, enabling secure mounting across various frame tubes (20–30 mm diameter).",
+        "Leveraged interference detection and parametric modeling to ensure manufacturability and precise assembly."
       ],
       category: "CAD Design"
     },
@@ -190,8 +224,9 @@ const Portfolio = () => {
       tech: ["SolidWorks", "Human Factors", "Documentation"],
       date: "Sep 2024 – Dec 2024",
       details: [
-        "Designed a human-centered mechanical system for a children’s assistive transport device in SolidWorks, converting accessibility-driven user needs into ergonomic, safety, and usability-focused design features while developing detailed system drawings.",
-        "Developed formal engineering documentation (PRS, SKB, PDS) and applied subsystem decomposition, subsystem matrices, and design choice matrices to compare design alternatives, manage trade-offs, and support design requirements."
+        "Designed a human-centered assistive transport device for children, translating accessibility-driven user needs into ergonomic mechanical features.",
+        "Developed formal engineering documentation including Product Requirements Specification (PRS), System Breakdown (SKB), and Product Design Specification (PDS).",
+        "Applied structured decision-making frameworks like subsystem matrices and trade-off analysis to compare alternatives and finalize CAD models."
       ],
       category: "Design"
     }
@@ -212,12 +247,12 @@ const Portfolio = () => {
     {
       title: "Engineering Tools",
       icon: <PenTool className="w-5 h-5 mb-1 text-amber-400" />,
-      skills: ["SolidWorks", "ANSYS", "Gazebo", "RViz", "Simulink", "Git", "VS Code"]
+      skills: ["SolidWorks", "ANSYS", "Gazebo", "RViz", "Simulink", "Git", "VS Code", "LabVIEW"]
     },
     {
       title: "Electrical & Embedded",
       icon: <Zap className="w-5 h-5 mb-1 text-yellow-400" />,
-      skills: ["PWM & H-Bridge", "Sensor Interfacing", "Power Electronics", "Actuators"]
+      skills: ["PWM & H-Bridge", "Sensor Interfacing", "Power Electronics", "Actuators", "NI DAQ"]
     },
     {
       title: "Manufacturing",
@@ -305,17 +340,6 @@ const Portfolio = () => {
             >
               View Projects <ChevronRight size={18} />
             </a>
-            
-            {/* Resume Button - Linking to Public Folder */}
-            <a 
-              href="/MyResume.pdf"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="px-8 py-3 rounded border border-cyan-500/50 text-cyan-400 hover:bg-cyan-950/30 font-medium transition-all flex items-center gap-2"
-            >
-              <FileText size={18} /> Resume
-            </a>
-
             <a 
               href="https://www.linkedin.com/in/osman-asif-a80471346/details/projects/" 
               target="_blank" 
@@ -402,7 +426,7 @@ const Portfolio = () => {
                     </h3>
                     <div className="text-cyan-400 font-medium mb-1">{exp.company}</div>
                   </div>
-                  <div className="font-mono text-sm text-slate-500 whitespace-nowrap bg-slate-900/50 px-2 py-1 rounded inline-block md:block w-fit">
+                  <div className="font-mono text-sm text-slate-500 whitespace-nowrap bg-slate-900/50 px-2 py-1 rounded inline-block md:block w-fit mt-2 md:mt-0">
                     {exp.date} | {exp.location}
                   </div>
                 </div>
@@ -430,7 +454,7 @@ const Portfolio = () => {
             <div className="h-px bg-slate-700 flex-1"></div>
           </div>
 
-          {/* Current Ongoing Projects Section (Moved Up) */}
+          {/* Current Ongoing Projects Section */}
           <div className="mb-20">
             <div className="flex items-center gap-3 mb-8">
               <div className="p-2 rounded-full bg-cyan-950/50 text-cyan-400 animate-pulse border border-cyan-500/20">
@@ -450,7 +474,7 @@ const Portfolio = () => {
                   </div>
 
                   <div className="p-8 flex flex-col h-full">
-                    <h3 className="text-2xl font-bold text-white mb-4 group-hover:text-cyan-400 transition-colors pr-8">
+                    <h3 className="text-xl font-bold text-white mb-4 group-hover:text-cyan-400 transition-colors pr-8">
                       {project.title}
                     </h3>
                     
@@ -466,7 +490,7 @@ const Portfolio = () => {
                       {project.description.map((point, i) => (
                         <li key={i} className="flex items-start text-slate-400 leading-relaxed text-sm group/item">
                           <span className="text-cyan-500 mr-2 mt-1 min-w-[12px]">▹</span>
-                          {point}
+                          <span>{point}</span>
                         </li>
                       ))}
                     </ul>
@@ -544,6 +568,37 @@ const Portfolio = () => {
         </div>
       </section>
 
+      {/* Skills Section */}
+      <section id="skills" className="py-24 px-6">
+        <div className="max-w-5xl mx-auto">
+          <div className="flex items-center gap-4 mb-16">
+            <h2 className="text-3xl md:text-4xl font-bold text-white font-mono">04. Technical Arsenal</h2>
+            <div className="h-px bg-slate-700 flex-1"></div>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {skillCategories.map((cat, idx) => (
+              <div key={idx} className="bg-slate-900/50 p-6 rounded-lg border border-slate-800 hover:bg-slate-800/50 transition-colors">
+                <div className="flex items-center gap-3 mb-4">
+                  {cat.icon}
+                  <h3 className="text-lg font-bold text-white">{cat.title}</h3>
+                </div>
+                <div className="flex flex-wrap gap-2">
+                  {cat.skills.map((skill, sIdx) => (
+                    <span 
+                      key={sIdx} 
+                      className="px-3 py-1 bg-slate-950 rounded text-sm text-slate-300 border border-slate-800 hover:border-cyan-500/30 transition-colors cursor-default"
+                    >
+                      {skill}
+                    </span>
+                  ))}
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* Footer */}
       <footer className="py-12 bg-slate-950 border-t border-slate-900 text-center">
         <div className="max-w-4xl mx-auto px-6">
@@ -569,20 +624,12 @@ const Portfolio = () => {
             >
               <Github size={24} />
             </a>
-            
-            {/* Replaced mailto with copy button */}
-            <button 
-              onClick={handleCopyEmail}
-              className="p-3 bg-slate-900 rounded-full text-slate-400 hover:text-cyan-400 hover:bg-slate-800 transition-all transform hover:scale-110 relative"
-              title="Copy Email"
+            <a 
+              href="mailto:hello@example.com" // UPDATE THIS BEFORE PUBLISHING
+              className="p-3 bg-slate-900 rounded-full text-slate-400 hover:text-cyan-400 hover:bg-slate-800 transition-all transform hover:scale-110"
             >
               <Mail size={24} />
-              {copied && (
-                <span className="absolute -top-8 left-1/2 transform -translate-x-1/2 bg-cyan-500 text-slate-900 text-xs font-bold px-2 py-1 rounded shadow-lg animate-fade-in-up">
-                  Copied!
-                </span>
-              )}
-            </button>
+            </a>
           </div>
           
           <div className="text-slate-600 text-sm font-mono">
