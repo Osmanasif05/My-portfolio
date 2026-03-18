@@ -330,7 +330,7 @@ const Portfolio = () => {
           <p className="text-xl md:text-2xl text-slate-400 max-w-3xl mx-auto mb-10 leading-relaxed">
             Bridging the gap between mechanical systems, electronics, and intelligent software.
             <span className="text-slate-300 block mt-2">
-              Specializing in robust mechanical design, DFM-driven manufacturing, and the seamless integration of hardware with intelligent software.
+              Specializing in robust mechanical design and the seamless integration of hardware with intelligent software.
             </span>
           </p>
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
